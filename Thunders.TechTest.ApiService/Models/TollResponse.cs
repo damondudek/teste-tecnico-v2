@@ -2,7 +2,7 @@
 
 namespace Thunders.TechTest.ApiService.Models;
 
-public class TollResponse
+public record TollResponse
 {
     public Guid Id { get; set; }
     public DateTime CreatedAt { get; set; }

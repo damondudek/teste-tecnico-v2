@@ -4,10 +4,10 @@ namespace Thunders.TechTest.ApiService.Entities
 {
     public class Entity
     {
-        public Guid Id { get; private set; }
-        public DateTime CreatedAt { get; private set; }
-        public DateTime? UpdatedAt { get; private set; }
-        public DateTime? DeletedAt { get; private set; }
+        public Guid Id { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public void SetId()
         {

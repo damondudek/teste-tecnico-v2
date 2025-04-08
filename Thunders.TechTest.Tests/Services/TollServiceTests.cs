@@ -27,7 +27,7 @@ public class TollServiceTests
             City = "São Paulo",
             State = "SP",
             AmountPaid = 25.75m,
-            UsageDateTime = System.DateTime.Now,
+            UsageDateTime = DateTime.Now,
             VehicleType = VehicleType.Car
         };
 
@@ -40,5 +40,49 @@ public class TollServiceTests
         Assert.NotNull(result);
         Assert.Equal(toll, result);
         await _repositoryMock.Received(1).AddAsync(toll);
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_ShouldReturnToll_WhenTollExists()
+    {
+        // Arrange
+        var tollId = Guid.NewGuid();
+        var expectedToll = new Toll
+        {
+            Id = tollId,
+            Plaza = "Main Plaza",
+            City = "São Paulo",
+            State = "SP",
+            AmountPaid = 25.75m,
+            UsageDateTime = DateTime.Now,
+            VehicleType = VehicleType.Car
+        };
+
+        _repositoryMock.GetByIdAsync(tollId).Returns(expectedToll);
+
+        // Act
+        var result = await _tollService.GetByIdAsync(tollId);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(expectedToll, result);
+        Assert.Equal(tollId, result.Id);
+        await _repositoryMock.Received(1).GetByIdAsync(tollId);
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_ShouldReturnNull_WhenTollDoesNotExist()
+    {
+        // Arrange
+        var tollId = Guid.NewGuid();
+
+        _repositoryMock.GetByIdAsync(tollId).Returns((Toll?)null);
+
+        // Act
+        var result = await _tollService.GetByIdAsync(tollId);
+
+        // Assert
+        Assert.Null(result);
+        await _repositoryMock.Received(1).GetByIdAsync(tollId);
     }
 }
