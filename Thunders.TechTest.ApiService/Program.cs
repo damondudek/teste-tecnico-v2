@@ -10,11 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 builder.Services.AddControllers();
+builder.Services.AddProblemDetails();
 
 var features = Features.BindFromConfiguration(builder.Configuration);
-
-// Add services to the container.
-builder.Services.AddProblemDetails();
 
 if (features.UseMessageBroker)
 {
@@ -41,6 +39,11 @@ var app = builder.Build();
 if (features.UseSwagger)
 {
     app.AddSwagger();
+}
+
+if (features.UseApplyMigrations)
+{
+    app.ApplyMigrations<TollContext>();
 }
 
 app.UseHttpsRedirection();

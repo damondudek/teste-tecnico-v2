@@ -6,6 +6,7 @@
         public required bool UseEntityFramework { get; set; }
         public required bool UseCache { get; set; }
         public required bool UseSwagger { get; set; }
+        public required bool UseApplyMigrations { get; set; }
 
         public static Features BindFromConfiguration(IConfiguration section)
         {
