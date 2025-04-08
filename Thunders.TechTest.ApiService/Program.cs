@@ -21,7 +21,7 @@ if (features.UseMessageBroker)
 
 if (features.UseEntityFramework)
 {
-    builder.Services.AddSqlServerDbContext<DbContext>(builder.Configuration);
+    builder.Services.AddSqlServerDbContext<TollContext>(builder.Configuration);
 }
 
 if (features.UseCache)
