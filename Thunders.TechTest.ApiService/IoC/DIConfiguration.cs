@@ -8,11 +8,13 @@ namespace Thunders.TechTest.ApiService.IoC
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<ITollService, TollService>();
+            services.AddScoped<IReportService, ReportService>();
         }
 
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ITollRepository, TollRepository>();
+            services.AddScoped<IReportRepository, ReportRepository>();
         }
     }
 }

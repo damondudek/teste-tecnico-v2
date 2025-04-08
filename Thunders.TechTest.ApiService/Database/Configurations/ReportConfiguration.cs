@@ -11,11 +11,14 @@ public class ReportConfiguration : IEntityTypeConfiguration<Report>
         builder.ToTable("Reports");
 
         builder.HasKey(r => r.Id);
-        builder.Property(r => r.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
+
+        builder.Property(r => r.Id)
+               .HasColumnType("uniqueidentifier")
+               .HasDefaultValueSql("NEWID()");
 
         builder.Property(r => r.CreatedAt)
                .IsRequired()
-               .HasDefaultValueSql("CURRENT_TIMESTAMP");
+               .HasDefaultValueSql("GETDATE()");
 
         builder.Property(r => r.UpdatedAt)
                .HasDefaultValueSql("NULL");

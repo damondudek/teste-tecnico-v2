@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Thunders.TechTest.ApiService.Entities;
 using Thunders.TechTest.ApiService.Models;
+using Thunders.TechTest.ApiService.Models.Messages;
 using Thunders.TechTest.ApiService.Services;
 using Thunders.TechTest.OutOfBox.Queues;
 
@@ -12,9 +12,9 @@ namespace Thunders.TechTest.ApiService.Api
         {
             app.MapPost("/toll", async (TollRequest toll, IMessageSender sender, IMapper mapper) =>
             {
-                var message = mapper.Map<Toll>(toll);
-                message.SetId();
-                await sender.Publish(message);
+                var message = mapper.Map<TollMessage>(toll);
+                message.Id = Guid.NewGuid();
+                await sender.SendLocal(message);
 
                 return Results.Accepted(null, new { id = message.Id });
             })
