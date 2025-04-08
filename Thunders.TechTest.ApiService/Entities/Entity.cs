@@ -16,17 +16,17 @@ namespace Thunders.TechTest.ApiService.Entities
 
         public void SetCreation()
         {
-            CreatedAt = new DateTime();
+            CreatedAt = DateTime.Now;
         }
 
         public void SetUpdate()
         {
-            UpdatedAt = new DateTime();
+            UpdatedAt = DateTime.Now;
         }
 
         public void SetDeletion()
         {
-            DeletedAt = new DateTime();
+            DeletedAt = DateTime.Now;
             SetUpdate();
         }
 
