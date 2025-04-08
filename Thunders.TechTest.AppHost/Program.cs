@@ -1,6 +1,7 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedis("cache");
+var cache = builder.AddRedis("Redis")
+    .WithDataVolume();
 
 var rabbitMqPassword = builder.AddParameter("RabbitMqPassword", true);
 var rabbitMq = builder.AddRabbitMQ("RabbitMq", password: rabbitMqPassword)
@@ -15,6 +16,8 @@ var sqlServer = builder.AddSqlServer("SqlServerInstance", sqlServerPassword)
 var database = sqlServer.AddDatabase("ThundersTechTestDb", "ThundersTechTest");
 
 var apiService = builder.AddProject<Projects.Thunders_TechTest_ApiService>("apiservice")
+    .WithReference(cache)
+    .WaitFor(cache)
     .WithReference(rabbitMq)
     .WaitFor(rabbitMq)
     .WithReference(database)
