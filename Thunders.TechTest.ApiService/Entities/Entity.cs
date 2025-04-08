@@ -14,6 +14,22 @@ namespace Thunders.TechTest.ApiService.Entities
             Id = Guid.NewGuid();
         }
 
+        public void SetCreation()
+        {
+            CreatedAt = new DateTime();
+        }
+
+        public void SetUpdate()
+        {
+            UpdatedAt = new DateTime();
+        }
+
+        public void SetDeletion()
+        {
+            DeletedAt = new DateTime();
+            SetUpdate();
+        }
+
         public override string? ToString()
         {
             return JsonSerializer.Serialize(this);

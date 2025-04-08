@@ -13,6 +13,7 @@ namespace Thunders.TechTest.OutOfBox.Queues
             SubscriptionBuilder? subscriptionBuilder = null)
         {
             services.AutoRegisterHandlersFromAssembly(Assembly.GetEntryAssembly());
+            services.AddScoped<IMessageSender, RebusMessageSender>();
 
             services.AddRebus(c => c
                 .Transport(t =>

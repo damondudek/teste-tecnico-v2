@@ -11,11 +11,14 @@ public class TollConfiguration : IEntityTypeConfiguration<Toll>
         builder.ToTable("Tolls");
 
         builder.HasKey(t => t.Id);
-        builder.Property(t => t.Id).HasColumnType("uuid").HasDefaultValueSql("gen_random_uuid()");
+
+        builder.Property(t => t.Id)
+               .HasColumnType("uniqueidentifier")
+               .HasDefaultValueSql("NEWID()");
 
         builder.Property(t => t.CreatedAt)
                .IsRequired()
-               .HasDefaultValueSql("CURRENT_TIMESTAMP");
+               .HasDefaultValueSql("GETDATE()");
 
         builder.Property(t => t.UpdatedAt)
                .HasDefaultValueSql("NULL");

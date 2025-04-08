@@ -1,6 +1,12 @@
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using Thunders.TechTest.ApiService;
+using Thunders.TechTest.ApiService.Api;
 using Thunders.TechTest.ApiService.Database;
+using Thunders.TechTest.ApiService.Handlers;
+using Thunders.TechTest.ApiService.IoC;
+using Thunders.TechTest.ApiService.Models.Mappers;
 using Thunders.TechTest.OutOfBox.Cache;
 using Thunders.TechTest.OutOfBox.Database;
 using Thunders.TechTest.OutOfBox.Queues;
@@ -12,11 +18,23 @@ builder.AddServiceDefaults();
 builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
 
+builder.Services.AddServices();
+builder.Services.AddRepositories();
+
+builder.Services.AddAutoMapper(typeof(TollMappingProfile));
+
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+});
+
 var features = Features.BindFromConfiguration(builder.Configuration);
 
 if (features.UseMessageBroker)
 {
-    builder.Services.AddBus(builder.Configuration, new SubscriptionBuilder());
+    builder.Services.AddBus(builder.Configuration, new SubscriptionBuilder()
+        .Add<ReportMessageHandler>()
+        .Add<TollMessageHandler>());
 }
 
 if (features.UseEntityFramework)
@@ -46,9 +64,12 @@ if (features.UseApplyMigrations)
     app.ApplyMigrations<TollContext>();
 }
 
+app.BaseApiMap();
+app.TollApiMap();
+app.ReportApiMap();
+
 app.UseHttpsRedirection();
 
-// Configure the HTTP request pipeline.
 app.UseExceptionHandler();
 
 app.MapDefaultEndpoints();
