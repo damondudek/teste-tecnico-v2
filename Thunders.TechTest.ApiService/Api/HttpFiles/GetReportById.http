@@ -1,0 +1,2 @@
+### Get Specific Report by ID
+GET https://localhost:7405/api/v1/reports/506352d2-ad9e-4acf-94af-063b9f44b1de

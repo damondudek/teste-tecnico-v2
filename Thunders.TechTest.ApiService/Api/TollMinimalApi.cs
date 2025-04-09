@@ -14,8 +14,9 @@ namespace Thunders.TechTest.ApiService.Api
             {
                 var message = mapper.Map<TollMessage>(toll);
                 await sender.SendLocal(message);
+                var response = new { id = message.Id };
 
-                return Results.Accepted(null, new { id = message.Id });
+                return Results.AcceptedAtRoute("GetTollById", response, response);
             })
             .WithName("AddToll")
             .WithOpenApi();

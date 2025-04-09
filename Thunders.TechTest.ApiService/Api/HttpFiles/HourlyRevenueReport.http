@@ -1,0 +1,7 @@
+### Get Hourly Revenue Report
+POST https://localhost:7405/api/v1/reports/hourly-revenue
+Content-Type: application/json
+{
+  "startDate": "2025-04-01T00:00:00",
+  "endDate": "2025-04-02T23:59:59"
+}

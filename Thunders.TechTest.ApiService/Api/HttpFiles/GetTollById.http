@@ -1,0 +1,2 @@
+### Get Specific Toll by ID
+GET https://localhost:7405/api/v1/tolls/cfdaaa51-6a28-4629-9179-6705a194dc82

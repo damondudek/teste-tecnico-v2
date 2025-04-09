@@ -1,0 +1,8 @@
+### Get Vehicle Count Report
+POST https://localhost:7405/api/v1/reports/vehicle-count
+Content-Type: application/json
+{
+    "tollBooth": "Main Plaza",
+    "startDate": "2025-04-01T00:00:00",
+    "endDate": "2025-04-07T23:59:59"
+}

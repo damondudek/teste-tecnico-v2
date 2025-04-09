@@ -1,0 +1,8 @@
+### Get Top Toll Booths Report
+POST https://localhost:7405/api/v1/reports/top-toll-booths
+Content-Type: application/json
+{
+    "month": 4,
+    "year": 2025,
+    "topCount": 10
+}

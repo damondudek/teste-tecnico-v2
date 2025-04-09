@@ -1,0 +1,11 @@
+### Create a Toll Record
+POST https://localhost:7405/api/v1/tolls
+Content-Type: application/json
+{
+    "usageDateTime": "2025-04-01T18:59:59",
+    "tollBooth": "Main Plaza 2a22s",
+    "city": "New York2ss2sss",
+    "state": "NY",
+    "amountPaid": 1211.50,
+    "vehicleType": "Motorcycle"
+}
