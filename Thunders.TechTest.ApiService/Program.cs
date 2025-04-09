@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Thunders.TechTest.ApiService;
 using Thunders.TechTest.ApiService.Api;
 using Thunders.TechTest.ApiService.Application.Handlers;
 using Thunders.TechTest.ApiService.Domain.Models.Mappers;
+using Thunders.TechTest.ApiService.Infrastructure.Configurations;
 using Thunders.TechTest.ApiService.Infrastructure.Database;
 using Thunders.TechTest.ApiService.Infrastructure.IoC;
 using Thunders.TechTest.OutOfBox.Cache;

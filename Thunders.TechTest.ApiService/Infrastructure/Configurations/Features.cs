@@ -1,4 +1,4 @@
-﻿namespace Thunders.TechTest.ApiService
+﻿namespace Thunders.TechTest.ApiService.Infrastructure.Configurations
 {
     public class Features
     {
