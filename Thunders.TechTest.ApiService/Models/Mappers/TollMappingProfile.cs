@@ -10,7 +10,9 @@ public class TollMappingProfile : Profile
 {
     public TollMappingProfile()
     {
-        CreateMap<TollRequest, TollMessage>();
+        CreateMap<TollRequest, TollMessage>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
+
         CreateMap<TollMessage, Toll>();
         CreateMap<Toll, TollResponse>();
     }

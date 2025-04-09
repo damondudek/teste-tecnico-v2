@@ -10,10 +10,9 @@ namespace Thunders.TechTest.ApiService.Api
     {
         public static void TollApiMap(this WebApplication app)
         {
-            app.MapPost("/toll", async (TollRequest toll, IMessageSender sender, IMapper mapper) =>
+            app.MapPost("/tolls", async (TollRequest toll, IMessageSender sender, IMapper mapper) =>
             {
                 var message = mapper.Map<TollMessage>(toll);
-                message.Id = Guid.NewGuid();
                 await sender.SendLocal(message);
 
                 return Results.Accepted(null, new { id = message.Id });
@@ -21,7 +20,7 @@ namespace Thunders.TechTest.ApiService.Api
             .WithName("AddToll")
             .WithOpenApi();
 
-            app.MapGet("/toll/{id}", async (Guid id, ITollService tollService) =>
+            app.MapGet("/tolls/{id}", async (Guid id, ITollService tollService) =>
             {
                 var toll = await tollService.GetByIdAsync(id);
                 if (toll == null)

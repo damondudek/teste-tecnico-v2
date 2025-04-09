@@ -34,6 +34,7 @@ if (features.UseMessageBroker)
 {
     builder.Services.AddBus(builder.Configuration, new SubscriptionBuilder()
         .Add<ReportMessageHandler>()
+        .Add<GenerateReportMessageHandler>()
         .Add<TollMessageHandler>());
 }
 

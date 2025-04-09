@@ -1,28 +1,29 @@
 ﻿using Thunders.TechTest.ApiService.Entities;
+using Thunders.TechTest.ApiService.Models.Reports;
 using Thunders.TechTest.ApiService.Repositories;
 
 namespace Thunders.TechTest.ApiService.Services;
 
-public class ReportService : IReportService
+public class ReportService(IReportRepository repository) : IReportService
 {
-    private readonly IReportRepository _repository;
+    private readonly IReportRepository _repository = repository;
 
-    public ReportService(IReportRepository repository)
-    {
-        _repository = repository;
-    }
+    public Task<Report> AddAsync(Report report)
+        => _repository.AddAsync(report);
 
-    public async Task<Report> AddAsync(Report report)
-    {
-        var reportAdded = await _repository.AddAsync(report);
-        return reportAdded;
-    }
+    public Task<Report> UpdateAsync(Report report)
+        => _repository.UpdateAsync(report);
 
-    public async Task<Report?> GetByIdAsync(Guid id)
-    {
-        var report = await _repository.GetByIdAsync(id);
-        return report;
-    }
+    public Task<Report?> GetByIdAsync(Guid id)
+        => _repository.GetByIdAsync(id);
 
+    public Task<List<RevenueReportByHourAndCity>> GetRevenueReportByHourAndCityWithCacheAsync(HourlyRevenueParams reportParams)
+        => _repository.GetRevenueReportByHourAndCityWithCacheAsync(reportParams);
+
+    public Task<List<TollBoothRevenueReport>> GetTopTollBoothsByRevenueWithCacheAsync(TopTollBoothsParams reportParams)
+        => _repository.GetTopTollBoothsByRevenueWithCacheAsync(reportParams);
+
+    public Task<List<VehicleTypeCountReport>> GetVehicleTypeCountByTollBoothWithCacheAsync(VehicleCountParams reportParams)
+        => _repository.GetVehicleTypeCountByTollBoothWithCacheAsync(reportParams);
 }
 
