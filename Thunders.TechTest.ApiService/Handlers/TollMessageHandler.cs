@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Rebus.Handlers;
 using Thunders.TechTest.ApiService.Entities;
+using Thunders.TechTest.ApiService.Interfaces;
 using Thunders.TechTest.ApiService.Models.Messages;
-using Thunders.TechTest.ApiService.Services;
 
 namespace Thunders.TechTest.ApiService.Handlers;
 

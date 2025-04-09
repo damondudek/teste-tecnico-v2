@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Thunders.TechTest.ApiService.Interfaces;
 using Thunders.TechTest.ApiService.Models.Messages;
 using Thunders.TechTest.ApiService.Models.Requests;
 using Thunders.TechTest.ApiService.Models.Responses;
-using Thunders.TechTest.ApiService.Services;
 using Thunders.TechTest.OutOfBox.Queues;
 
 namespace Thunders.TechTest.ApiService.Api

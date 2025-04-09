@@ -1,5 +1,6 @@
 ﻿using Thunders.TechTest.ApiService.Database;
 using Thunders.TechTest.ApiService.Entities;
+using Thunders.TechTest.ApiService.Interfaces;
 
 namespace Thunders.TechTest.ApiService.Repositories;
 

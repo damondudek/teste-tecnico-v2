@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Thunders.TechTest.ApiService.Entities;
+using Thunders.TechTest.ApiService.Interfaces;
 using Thunders.TechTest.ApiService.Models.Reports;
 
 namespace Thunders.TechTest.ApiService.Services.ReportGenerator

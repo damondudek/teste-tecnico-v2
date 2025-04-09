@@ -1,6 +1,6 @@
 ﻿using Thunders.TechTest.ApiService.Entities;
 
-namespace Thunders.TechTest.ApiService.Services.ReportGenerator;
+namespace Thunders.TechTest.ApiService.Interfaces;
 
 public interface IReportGenerator
 {

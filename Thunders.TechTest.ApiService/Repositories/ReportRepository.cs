@@ -3,6 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Thunders.TechTest.ApiService.Database;
 using Thunders.TechTest.ApiService.Entities;
+using Thunders.TechTest.ApiService.Interfaces;
 using Thunders.TechTest.ApiService.Models.Reports;
 
 namespace Thunders.TechTest.ApiService.Repositories;

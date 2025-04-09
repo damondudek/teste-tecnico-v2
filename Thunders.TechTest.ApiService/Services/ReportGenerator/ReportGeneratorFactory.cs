@@ -1,4 +1,5 @@
 ﻿using Thunders.TechTest.ApiService.Enums;
+using Thunders.TechTest.ApiService.Interfaces;
 
 namespace Thunders.TechTest.ApiService.Services.ReportGenerator;
 

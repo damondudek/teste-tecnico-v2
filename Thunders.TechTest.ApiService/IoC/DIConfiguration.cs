@@ -1,4 +1,5 @@
-﻿using Thunders.TechTest.ApiService.Repositories;
+﻿using Thunders.TechTest.ApiService.Interfaces;
+using Thunders.TechTest.ApiService.Repositories;
 using Thunders.TechTest.ApiService.Services;
 using Thunders.TechTest.ApiService.Services.ReportGenerator;
 

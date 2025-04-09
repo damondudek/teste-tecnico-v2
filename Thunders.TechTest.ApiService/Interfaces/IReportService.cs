@@ -1,7 +1,7 @@
 ﻿using Thunders.TechTest.ApiService.Entities;
 using Thunders.TechTest.ApiService.Models.Reports;
 
-namespace Thunders.TechTest.ApiService.Services;
+namespace Thunders.TechTest.ApiService.Interfaces;
 
 public interface IReportService
 {

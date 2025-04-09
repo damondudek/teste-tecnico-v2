@@ -2,9 +2,9 @@
 using Rebus.Handlers;
 using System.Text.Json;
 using Thunders.TechTest.ApiService.Entities;
+using Thunders.TechTest.ApiService.Interfaces;
 using Thunders.TechTest.ApiService.Models.Messages;
 using Thunders.TechTest.ApiService.Models.Reports;
-using Thunders.TechTest.ApiService.Services;
 using Thunders.TechTest.OutOfBox.Queues;
 
 namespace Thunders.TechTest.ApiService.Handlers;

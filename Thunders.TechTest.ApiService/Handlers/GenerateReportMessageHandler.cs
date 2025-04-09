@@ -1,6 +1,6 @@
 ﻿using Rebus.Handlers;
+using Thunders.TechTest.ApiService.Interfaces;
 using Thunders.TechTest.ApiService.Models.Messages;
-using Thunders.TechTest.ApiService.Services;
 using Thunders.TechTest.ApiService.Services.ReportGenerator;
 
 public class GenerateReportMessageHandler(

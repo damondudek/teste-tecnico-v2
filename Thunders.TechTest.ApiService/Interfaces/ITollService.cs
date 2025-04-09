@@ -1,8 +1,8 @@
 ﻿using Thunders.TechTest.ApiService.Entities;
 
-namespace Thunders.TechTest.ApiService.Repositories;
+namespace Thunders.TechTest.ApiService.Interfaces;
 
-public interface ITollRepository
+public interface ITollService
 {
     Task<Toll> AddAsync(Toll toll);
     Task<Toll?> GetByIdAsync(Guid id);

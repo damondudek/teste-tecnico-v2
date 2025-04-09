@@ -1,7 +1,7 @@
 ﻿using NSubstitute;
 using Thunders.TechTest.ApiService.Entities;
 using Thunders.TechTest.ApiService.Enums;
-using Thunders.TechTest.ApiService.Repositories;
+using Thunders.TechTest.ApiService.Interfaces;
 using Thunders.TechTest.ApiService.Services;
 
 namespace Thunders.TechTest.Tests.Services;
