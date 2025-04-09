@@ -1,4 +1,4 @@
-﻿using Thunders.TechTest.ApiService.Entities;
+﻿using Thunders.TechTest.ApiService.Domain.Entities;
 
 namespace Thunders.TechTest.Tests.Entities;
 
