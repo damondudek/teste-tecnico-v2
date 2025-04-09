@@ -2,7 +2,7 @@
 
 namespace Thunders.TechTest.ApiService.Models.Messages;
 
-public record ReportMessage : IReportMessage
+public record GenerateReportMessage
 {
     public Guid Id { get; set; }
     public ReportType ReportType { get; set; }

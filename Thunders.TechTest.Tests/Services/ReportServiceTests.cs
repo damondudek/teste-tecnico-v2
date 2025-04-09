@@ -27,7 +27,7 @@ public class ReportServiceTests
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
             DeletedAt = null,
-            ReportType = ReportType.HourlyReportByCity,
+            ReportType = ReportType.HourlyRevenueByCity,
             Params = "{\"key\": \"value\"}"
         };
 
@@ -53,7 +53,7 @@ public class ReportServiceTests
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
             DeletedAt = null,
-            ReportType = ReportType.VehicleCountByPlaza,
+            ReportType = ReportType.VehicleCountByTollBooth,
             Params = "{\"key\": \"value\"}"
         };
 

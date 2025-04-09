@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Thunders.TechTest.ApiService.Models;
 using Thunders.TechTest.ApiService.Models.Messages;
+using Thunders.TechTest.ApiService.Models.Requests;
 using Thunders.TechTest.ApiService.Services;
 using Thunders.TechTest.OutOfBox.Queues;
 
@@ -21,7 +21,7 @@ namespace Thunders.TechTest.ApiService.Api
             .WithName("AddToll")
             .WithOpenApi();
 
-            app.MapGet("/toll/{id}", async (Guid id, ITollService tollService, IMapper mapper) =>
+            app.MapGet("/toll/{id}", async (Guid id, ITollService tollService) =>
             {
                 var toll = await tollService.GetByIdAsync(id);
                 if (toll == null)
