@@ -1,5 +1,8 @@
-﻿using Thunders.TechTest.ApiService.Repositories;
+﻿using Rebus.Handlers;
+using Thunders.TechTest.ApiService.Models.Messages;
+using Thunders.TechTest.ApiService.Repositories;
 using Thunders.TechTest.ApiService.Services;
+using Thunders.TechTest.ApiService.Services.ReportGenerator;
 
 namespace Thunders.TechTest.ApiService.IoC
 {
@@ -9,6 +12,11 @@ namespace Thunders.TechTest.ApiService.IoC
         {
             services.AddScoped<ITollService, TollService>();
             services.AddScoped<IReportService, ReportService>();
+
+            services.AddScoped<HourlyRevenueReportGenerator>();
+            services.AddScoped<TopTollBoothsReportGenerator>();
+            services.AddScoped<VehicleCountReportGenerator>();
+            services.AddScoped<ReportGeneratorFactory>();
         }
 
         public static void AddRepositories(this IServiceCollection services)
