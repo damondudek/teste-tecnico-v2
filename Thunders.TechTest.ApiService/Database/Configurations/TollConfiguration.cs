@@ -29,7 +29,7 @@ public class TollConfiguration : IEntityTypeConfiguration<Toll>
         builder.Property(t => t.UsageDateTime)
                .IsRequired();
 
-        builder.Property(t => t.Plaza)
+        builder.Property(t => t.TollBooth)
                .IsRequired()
                .HasMaxLength(100);
 
@@ -49,5 +49,20 @@ public class TollConfiguration : IEntityTypeConfiguration<Toll>
                .IsRequired()
                .HasConversion<string>()
                .HasMaxLength(20);
+
+        builder.HasIndex(t => t.UsageDateTime)
+               .HasDatabaseName("IX_UsageDateTime");
+
+        builder.HasIndex(t => new { t.City })
+               .HasDatabaseName("IX_City");
+
+        builder.HasIndex(t => new { t.TollBooth })
+               .HasDatabaseName("IX_TollBooth");
+
+        builder.HasIndex(t => new { t.UsageDateTime, t.TollBooth })
+               .HasDatabaseName("IX_UsageDateTime_TollBooth");
+
+        builder.HasIndex(t => new { t.UsageDateTime, t.City })
+               .HasDatabaseName("IX_UsageDateTime_City");
     }
 }

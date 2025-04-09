@@ -23,7 +23,7 @@ public class TollServiceTests
         // Arrange
         var toll = new Toll
         {
-            Plaza = "Main Plaza",
+            TollBooth = "Main TollBooth",
             City = "São Paulo",
             State = "SP",
             AmountPaid = 25.75m,
@@ -50,7 +50,7 @@ public class TollServiceTests
         var expectedToll = new Toll
         {
             Id = tollId,
-            Plaza = "Main Plaza",
+            TollBooth = "Main TollBooth",
             City = "São Paulo",
             State = "SP",
             AmountPaid = 25.75m,

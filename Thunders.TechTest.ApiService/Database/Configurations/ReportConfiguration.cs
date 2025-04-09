@@ -42,12 +42,7 @@ public class ReportConfiguration : IEntityTypeConfiguration<Report>
                .HasMaxLength(1000);
 
         builder.Property(r => r.JsonData)
-               .IsRequired()
                .HasColumnType("nvarchar(max)");
-
-        builder.Property(r => r.CacheKey)
-               .IsRequired()
-               .HasMaxLength(100);
 
         builder.Property(r => r.Error)
                .HasMaxLength(1000);

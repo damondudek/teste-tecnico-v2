@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Thunders.TechTest.ApiService.Database;
 
@@ -11,9 +12,11 @@ using Thunders.TechTest.ApiService.Database;
 namespace Thunders.TechTest.ApiService.Migrations
 {
     [DbContext(typeof(TollContext))]
-    partial class TollContextModelSnapshot : ModelSnapshot
+    [Migration("20250408222656_TollAndReportChangesMigration")]
+    partial class TollAndReportChangesMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,6 +52,7 @@ namespace Thunders.TechTest.ApiService.Migrations
                         .HasDefaultValueSql("NULL");
 
                     b.Property<string>("JsonData")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Params")
@@ -125,21 +129,6 @@ namespace Thunders.TechTest.ApiService.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("City")
-                        .HasDatabaseName("IX_City");
-
-                    b.HasIndex("TollBooth")
-                        .HasDatabaseName("IX_TollBooth");
-
-                    b.HasIndex("UsageDateTime")
-                        .HasDatabaseName("IX_UsageDateTime");
-
-                    b.HasIndex("UsageDateTime", "City")
-                        .HasDatabaseName("IX_UsageDateTime_City");
-
-                    b.HasIndex("UsageDateTime", "TollBooth")
-                        .HasDatabaseName("IX_UsageDateTime_TollBooth");
 
                     b.ToTable("Tolls", (string)null);
                 });
