@@ -2,28 +2,26 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Thunders.TechTest.ApiService.Domain.Entities;
+using Thunders.TechTest.ApiService.Domain.Extensions;
 using Thunders.TechTest.ApiService.Domain.Interfaces;
 using Thunders.TechTest.ApiService.Domain.Models.Reports;
 using Thunders.TechTest.ApiService.Infrastructure.Database;
 
 namespace Thunders.TechTest.ApiService.Infrastructure.Repositories;
 
-public class ReportRepository : IReportRepository
+public class ReportRepository(TollContext context, IDistributedCache cache) : IReportRepository
 {
-    private readonly TollContext _context;
-    private readonly IDistributedCache _cache;
-
-    public ReportRepository(TollContext context, IDistributedCache cache)
-    {
-        _context = context;
-        _cache = cache;
-    }
+    private readonly TollContext _context = context;
+    private readonly IDistributedCache _cache = cache;
 
     public async Task<Report> AddAsync(Report report)
     {
         report.SetCreation();
         await _context.Reports.AddAsync(report);
         await _context.SaveChangesAsync();
+
+        var cacheKey = $"report_{report.Id}";
+        await SetCache(cacheKey, report);
 
         return report;
     }
@@ -34,11 +32,22 @@ public class ReportRepository : IReportRepository
         _context.Reports.Update(report);
         await _context.SaveChangesAsync();
 
+        var cacheKey = $"report_{report.Id}";
+        await SetCache(cacheKey, report);
+
         return report;
     }
 
     public async Task<Report?> GetByIdAsync(Guid id)
-        => await _context.Reports.FindAsync(id);
+    {
+        var cacheKey = $"report_{id}";
+        var cachedReport = await _cache.GetStringAsync(cacheKey);
+
+        if (!string.IsNullOrEmpty(cachedReport))
+            return JsonConvert.DeserializeObject<Report>(cachedReport);
+
+        return await _context.Reports.FindAsync(id);
+    }
 
     public async Task<List<RevenueReportByHourAndCity>> GetRevenueReportByHourAndCityAsync(DateTime startDate, DateTime endDate)
     {
@@ -61,10 +70,9 @@ public class ReportRepository : IReportRepository
         return reportData;
     }
 
-
     public async Task<List<RevenueReportByHourAndCity>> GetRevenueReportByHourAndCityWithCacheAsync(HourlyRevenueParams reportParams)
     {
-        var cacheKey = $"revenue_report_by_hour_and_city_{reportParams.Id}";
+        var cacheKey = $"revenue_report_by_hour_and_city_{reportParams.StartDate.ToCacheKey()}_{reportParams.EndDate.ToCacheKey()}";
         var cachedReport = await _cache.GetStringAsync(cacheKey);
 
         if (!string.IsNullOrEmpty(cachedReport))
@@ -94,7 +102,7 @@ public class ReportRepository : IReportRepository
 
     public async Task<List<TollBoothRevenueReport>> GetTopTollBoothsByRevenueWithCacheAsync(TopTollBoothsParams reportParams)
     {
-        var cacheKey = $"top_toll_booths_by_revenue_{reportParams.Id}";
+        var cacheKey = $"top_toll_booths_by_revenue_{reportParams.Month}_{reportParams.Year}_{reportParams.TopCount}";
         var cachedReport = await _cache.GetStringAsync(cacheKey);
 
         if (!string.IsNullOrEmpty(cachedReport))
@@ -116,7 +124,7 @@ public class ReportRepository : IReportRepository
 
     public async Task<List<VehicleTypeCountReport>> GetVehicleTypeCountByTollBoothWithCacheAsync(VehicleCountParams reportParams)
     {
-        var cacheKey = $"vehicle_type_count_by_toll_booth_{reportParams.Id}";
+        var cacheKey = $"vehicle_type_count_by_toll_booth_{reportParams.TollBooth.SanitizeAsKey()}_{reportParams.StartDate.ToCacheKey()}_{reportParams.EndDate.ToCacheKey()}";
         var cachedReport = await _cache.GetStringAsync(cacheKey);
 
         if (!string.IsNullOrEmpty(cachedReport))
