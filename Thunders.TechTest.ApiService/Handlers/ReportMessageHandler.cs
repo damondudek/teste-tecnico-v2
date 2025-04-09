@@ -9,7 +9,7 @@ using Thunders.TechTest.OutOfBox.Queues;
 
 namespace Thunders.TechTest.ApiService.Handlers;
 
-public class ReportMessageHandler(IReportService reportService, ILogger<ReportMessageHandler> logger, IMapper mapper, IMessageSender sender) : 
+public class ReportMessageHandler(IReportService reportService, ILogger<ReportMessageHandler> logger, IMapper mapper, IMessageSender sender) :
     IHandleMessages<HourlyRevenueMessage>,
     IHandleMessages<TopTollBoothsMessage>,
     IHandleMessages<VehicleCountMessage>

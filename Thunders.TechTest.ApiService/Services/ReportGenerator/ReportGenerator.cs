@@ -1,5 +1,5 @@
-﻿using System.Text.Json.Serialization;
-using System.Text.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using Thunders.TechTest.ApiService.Entities;
 
 namespace Thunders.TechTest.ApiService.Services.ReportGenerator

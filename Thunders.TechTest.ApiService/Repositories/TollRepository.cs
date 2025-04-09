@@ -21,6 +21,6 @@ public class TollRepository : ITollRepository
         return toll;
     }
 
-    public async Task<Toll?> GetByIdAsync(Guid id) 
+    public async Task<Toll?> GetByIdAsync(Guid id)
         => await _context.Tolls.FindAsync(id);
 }

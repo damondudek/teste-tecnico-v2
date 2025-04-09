@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http.Json;
-using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Thunders.TechTest.ApiService;
 using Thunders.TechTest.ApiService.Api;
 using Thunders.TechTest.ApiService.Database;

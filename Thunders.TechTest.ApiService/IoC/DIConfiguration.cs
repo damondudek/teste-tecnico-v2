@@ -1,6 +1,4 @@
-﻿using Rebus.Handlers;
-using Thunders.TechTest.ApiService.Models.Messages;
-using Thunders.TechTest.ApiService.Repositories;
+﻿using Thunders.TechTest.ApiService.Repositories;
 using Thunders.TechTest.ApiService.Services;
 using Thunders.TechTest.ApiService.Services.ReportGenerator;
 

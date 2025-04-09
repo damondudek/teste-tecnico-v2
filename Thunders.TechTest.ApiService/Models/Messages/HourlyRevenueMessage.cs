@@ -1,6 +1,4 @@
-﻿using Thunders.TechTest.ApiService.Enums;
-
-namespace Thunders.TechTest.ApiService.Models.Messages;
+﻿namespace Thunders.TechTest.ApiService.Models.Messages;
 
 public record HourlyRevenueMessage : ReportMessage
 {

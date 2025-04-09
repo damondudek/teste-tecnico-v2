@@ -8,7 +8,7 @@ namespace Thunders.TechTest.OutOfBox.Queues
         {
             await bus.SendLocal(message);
         }
-        
+
         public virtual async Task Publish(object message)
         {
             await bus.Publish(message);

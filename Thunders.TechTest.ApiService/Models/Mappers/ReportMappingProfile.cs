@@ -25,7 +25,7 @@ public class ReportMappingProfile : Profile
         CreateMap<VehicleCountRequest, VehicleCountMessage>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
             .ForMember(dest => dest.ReportType, opt => opt.MapFrom(_ => ReportType.VehicleCountByTollBooth));
-        
+
         CreateMap<ReportMessage, Report>();
         CreateMap<HourlyRevenueMessage, HourlyRevenueParams>();
         CreateMap<TopTollBoothsMessage, TopTollBoothsParams>();

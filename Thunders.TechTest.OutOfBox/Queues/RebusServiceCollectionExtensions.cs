@@ -8,8 +8,8 @@ namespace Thunders.TechTest.OutOfBox.Queues
     public static class RebusServiceCollectionExtensions
     {
         public static IServiceCollection AddBus(
-            this IServiceCollection services, 
-            IConfiguration configuration, 
+            this IServiceCollection services,
+            IConfiguration configuration,
             SubscriptionBuilder? subscriptionBuilder = null)
         {
             services.AutoRegisterHandlersFromAssembly(Assembly.GetEntryAssembly());
@@ -19,7 +19,7 @@ namespace Thunders.TechTest.OutOfBox.Queues
                 .Transport(t =>
                 {
                     t.UseRabbitMq(configuration.GetConnectionString("RabbitMq"), "Thunders.TechTest");
-                }), 
+                }),
                 onCreated: async bus =>
                 {
                     if (subscriptionBuilder != null)

@@ -3,7 +3,6 @@ using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Thunders.TechTest.ApiService.Database;
 using Thunders.TechTest.ApiService.Entities;
-using Thunders.TechTest.ApiService.Extensions;
 using Thunders.TechTest.ApiService.Models.Reports;
 
 namespace Thunders.TechTest.ApiService.Repositories;
@@ -42,7 +41,7 @@ public class ReportRepository : IReportRepository
 
     public async Task<List<RevenueReportByHourAndCity>> GetRevenueReportByHourAndCityAsync(DateTime startDate, DateTime endDate)
     {
-        var result =  await _context.Tolls
+        var result = await _context.Tolls
             .AsNoTracking()
             .Where(t => t.UsageDateTime >= startDate && t.UsageDateTime <= endDate)
             .GroupBy(t => new { t.City, t.UsageDateTime.Hour })
